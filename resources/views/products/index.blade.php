@@ -20,8 +20,12 @@
     <main class="col-md-12">
         <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
+                @guest
+                @else
                 <span class="mr-md-auto"> <a href="{{route('product.show')}}" class="btn btn-outline-primary"
-                        data-toggle="tooltip" title="List view">Agregar Producto</a></span>
+                    data-toggle="tooltip" title="List view">Agregar Producto</a></span>
+                @endguest
+                <span class="mr-md-auto"></span>              
                 <select class="mr-2 form-control">
                     <option>Agregados recientemente</option>
                     <option>Más Caro</option>
@@ -40,10 +44,9 @@
             @foreach($products as $product)
             <div class="col-md-2">
                 <figure class="card card-product-grid">
-
                     <div class="img-wrap">
                         <img
-                            src="{{($product -> img == "") ? 'https://ui-avatars.com/api/?name='.$product -> nombre.'&size=255' : asset($product->img)}}">
+                            src="{{($product -> img == "") ? 'https://ui-avatars.com/api/?name='.$product -> nombre.'&size=55' : asset($product->img)}}">
                         {{--   <a class=" btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a> --}}
                     </div> <!-- img-wrap.// -->
                     <figcaption class="info-wrap">
@@ -58,6 +61,8 @@
                         </div>
                         {{--  <a href="#" class="btn btn-block btn-primary">Add to cart </a> --}}
                     </figcaption>
+                    @guest
+                    @else                   
                     <div class="btn-group btn-group-toggle">
                         <a href="{{route('product.edit', $product -> id)}}"
                             class="btn btn-warning btn-sm wtext">Actualizar</a>
@@ -67,7 +72,8 @@
                                 <input type="submit" value="Eliminar" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Desea eiminar el producto ... ?')">
                             </form>
-                    </div>
+                    </div>                  
+                    @endguest     
                 </figure>
 
             </div> <!-- col.// -->

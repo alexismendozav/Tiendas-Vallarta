@@ -51,3 +51,7 @@ Route::post('users', [UsersController::class,'store']) -> name('users.store');
 Route::put('users/{users}', [UsersController::class,'update']) -> name('users.update');
 Route::delete('users/{user}', [UsersController::class,'destroy']) -> name('users.destroy');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
