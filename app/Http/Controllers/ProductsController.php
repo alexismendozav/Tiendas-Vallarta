@@ -7,18 +7,27 @@ use App\Models\Category;
 use App\Models\Department;
 use App\Models\Unit;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
 
-
-
-    public function index($department)
+    public function index(Request $request,$department)
     {
-        $products = Product::latest()->paginate(24);
+        if($request->orderby){
+            $order_by=$request->orderby;
+            $products = Product::where('departamento', $department)->orderby($order_by)->with('unity')->paginate(24);
+        }else{
+            $products = Product::latest()->where('departamento', $department)->with('unity')->paginate(24);
+        }
+        
+        $departments = Department::all();
         return view('products.index', [
-            'products' => $products
+            'products' => $products,
+            'departments' => $departments,
+            'id_department' => $department
+
         ]);
     }
 

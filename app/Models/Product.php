@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Unit;
 
 class Product extends Model
 {
@@ -25,4 +26,45 @@ class Product extends Model
         'created_by'
     ];
     protected $table = 'productos';
+
+    public function getGetDisponibilityAttribute()
+    {
+        if ($this->status == 1) {
+            return '<spam class="green">Disponible</spam>';
+        } else {
+            return '<spam class="red">No disponible</spam>';
+        }
+    }
+
+    public function unity()
+    {
+        return $this->belongsTo(Unit::class, 'unidad_medida');
+    }
+
+    public function scopeOrderby($query, $order_by)
+    {
+        if (($order_by)) {
+            switch ($order_by) {
+                case '1':
+                    return $query->latest();
+                    break;
+
+                case '2':
+                    return $query->orderByDesc('precio_menudeo');
+                    break;
+
+                case '3':
+                    return $query->orderBy('precio_menudeo');
+                    break;
+
+                case '4':
+                    return $query->where('status',0);
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+        }
+    }
 }

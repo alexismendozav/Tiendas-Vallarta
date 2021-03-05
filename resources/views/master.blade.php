@@ -62,7 +62,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a href="#" class="nav-link"> 12/12/2021 </a></li>
+						<li class="nav-item"><a href="#" class="nav-link"> 12/12/2021</a></li>
 					</ul> <!-- list-inline //  -->
 				</div> <!-- navbar-collapse .// -->
 			</div> <!-- container //  -->
@@ -72,7 +72,7 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-3 col-4">
-						<a href="http://bootstrap-ecommerce.com" class="brand-wrap">
+						<a href="/" class="brand-wrap">
 							<h4>Tiendas Vallarta</h4>
 						</a> <!-- brand-wrap.// -->
 					</div>
@@ -139,16 +139,16 @@
 		</section> <!-- header-main .// -->
 
 
-		<nav class="navbar navbar-main navbar-expand-lg border-bottom">
+		<!--<nav class="navbar navbar-main navbar-expand-lg border-bottom">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav3"
 					aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="main_nav3">
+				 <div class="collapse navbar-collapse" id="main_nav3">
 					@yield('breadcrumb')
-				</div> <!-- collapse .// -->
-			</div> <!-- container .// -->
+				</div> collapse .// 
+			</div> <!-- container .// 
 		</nav> <!-- navbar main end.// -->
 
 	</header> <!-- section-header.// -->

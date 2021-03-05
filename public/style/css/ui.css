@@ -956,6 +956,10 @@ a[class*=card]:hover .title {
   height: 280px;
 }
 
+.card-me .img-wrap {
+  height: 210px;
+}
+
 .card-banner {
   display: flex;
   position: relative;

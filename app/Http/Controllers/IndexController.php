@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Storage;
 class IndexController extends Controller
 {
     public function index(){
-        return view('index.index');
+        $products = Product::where('departamento',2)->with('unity')->paginate(24);
+        $departments = Department::all();
+        return view('products.index', [
+            'products' => $products,
+            'departments' => $departments,
+            'id_department' => 2
+        ]);
     }
 }
