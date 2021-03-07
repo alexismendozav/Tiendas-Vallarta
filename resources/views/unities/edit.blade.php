@@ -1,13 +1,4 @@
-@extends('master')
-@section('breadcrumb')
-<nav>
-    <ol class="breadcrumb text-white">
-        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="{{route('unities')}}">Unidades de medida</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Editar unidad</li>
-    </ol>
-</nav>
-@stop
+@extends('layouts.app')
 @section('content')
    <div class="row">
     <div class="col-sm-10 mx-auto">

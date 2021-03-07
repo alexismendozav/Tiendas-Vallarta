@@ -31,7 +31,7 @@ class CategoriesController extends Controller
             'nombre'        => $request->nombre,
             'departamento'  => $request->department,
             'status'        => $request->status,
-            'created_by'    => '1', //pendiente
+            'created_by'    => 3, //pendiente
         ]);
         return redirect()->route('categories')
             ->with('info', 'La categoría fue creada correctamente');

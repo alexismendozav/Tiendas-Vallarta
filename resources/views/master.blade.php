@@ -12,7 +12,8 @@
 
 	<!-- jQuery -->
 	<script src="{{ asset('style/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="{{ asset('style/jquery-ui/jquery-ui.min.css') }}">
 	<!-- Bootstrap4 files-->
 
 	<link href="{{ asset('style/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
@@ -29,10 +30,11 @@
 	<link href="{{asset('style/css/responsive.css')}}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
 	<!-- custom javascript -->
-	<script src="{{ asset('style/js/script.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('style/js/app.js') }}" type="text/javascript"></script>
+	<scrip src="{{ asset('style/js/script.js') }}" type="text/javascript">
+		</script>
+		<scrip src="{{ asset('style/js/appp.js') }}" type="text/javascript"></scrip>
 
-	</script>
+
 
 </head>
 
@@ -77,17 +79,24 @@
 						</a> <!-- brand-wrap.// -->
 					</div>
 					<div class="col-lg-6 col-sm-12 order-3 order-lg-2">
-						<form action="#" class="search">
+						<form action="{{route('search.main')}}" class="search" method="GET">
 							<div class="input-group w-100">
-								<select class="custom-select" name="category_name">
-									<option value="">Todo</option>
-									<option value="codex">Abarrotes</option>
-									<option value="comments">Ferretería</option>
-									<option value="content">Latest</option>
+								<select id="department" class="form-control " name="department"
+									onchange="location = this.options[this.selectedIndex].value;">
+									@foreach ($departments as $department)
+									<option @if($department -> id == $id_department) selected @endif
+										value="{{route('products.index',$department->id)}}">{{$department -> nombre}}
+									</option>
+								
+									@endforeach
 								</select>
-								<input type="text" class="form-control" style="width:60%;" placeholder="Buscar">
+								<input type="hidden" name="id_department" value="{{$id_department}}">
+								<input type="text" name="product" id="products-search" class="form-control"
+									style="width:50%;" placeholder="Buscar">
 
 								<div class="input-group-append">
+									@method('GET')
+									@csrf
 									<button class="btn btn-primary" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
@@ -101,11 +110,12 @@
 							<div class="widget-header">
 								<small class="title text-muted">Bienvenido!</small>
 								<div>
-									<a href="{{ route('login') }}">Iniciar sesión</a> <span class="dark-transp"> | </span>
+									<a href="{{ route('login') }}">Iniciar sesión</a> <span class="dark-transp"> |
+									</span>
 									<a href="{{route('register') }}"> Registrarse</a>
 								</div>
 							</div>
-							<a href="#" class="widget-header pl-3 ml-3">
+							<a href="{{route('admin')}}" class="widget-header pl-3 ml-3">
 								<div class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></div>
 							</a>
 						</div> <!-- widgets-wrap.// -->
@@ -114,24 +124,23 @@
 
 							<div class="widget-header  justify-content-center">
 								<small class="title text-muted">Bienvenido {{ Auth::user()->name }} !</small>
-								
-									<a  href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+
+								<a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-								
+									{{ __('Cerrar Sesión') }}
+								</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+									@csrf
+								</form>
+
 							</div>
-							<a href="#" class="widget-header pl-3 ml-3 ">
+							<a href="{{route('admin')}}" class="widget-header pl-3 ml-3 ">
 								<div class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></div>
 							</a>
-							
+
 						</div> <!-- widgets-wrap.// -->
 						@endguest
-						
+
 
 					</div> <!-- col.// -->
 				</div> <!-- row.// -->
@@ -171,7 +180,29 @@
 				<a href="#">Tiendas Vallarta</a>
 			</p>
 		</div><!-- //container -->
+		<script>
+		
+    $("#products-search").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "{{route('search.products')}}",
+				type : 'get',
+                dataType: "json",
+                data: {
+                    term: request.term,
+                },
+                success: function (data) {
+                    response(data);
+					
+                },
+				error: function(data) {
+                alert("error");  
+            }
+            });
+        },
+    });
 
+		</script>
 	</footer>
 	<!-- ========================= FOOTER END // ========================= -->
 </body>

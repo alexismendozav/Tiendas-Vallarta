@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\UnitiesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,37 +22,39 @@ use App\Http\Controllers\UsersController;
 Route::get('/', [IndexController::class,'index']);
 
 Route::get('{department}/products', [ProductsController::class,'index'])->name('products.index');
-Route::get('products/show',  [ProductsController::class,'show'])->name('product.show');
-Route::post('products',  [ProductsController::class,'store'])->name('product.store');
-Route::get('products/{product}',  [ProductsController::class,'edit'])-> name('product.edit');
-Route::put('products/{product}/edit',  [ProductsController::class,'update']) -> name('product.update');
-Route::delete('products/{product}',  [ProductsController::class,'destroy'])->name('product.destroy');
+Route::get('products/show',  [ProductsController::class,'show'])->middleware('auth')->name('product.show');
+Route::post('products',  [ProductsController::class,'store'])->middleware('auth')->name('product.store');
+Route::get('products/{product}',  [ProductsController::class,'edit'])->middleware('auth')-> name('product.edit');
+Route::put('products/{product}/edit',  [ProductsController::class,'update']) ->middleware('auth')-> name('product.update');
+Route::delete('products/{product}',  [ProductsController::class,'destroy'])->middleware('auth')->name('product.destroy');
 
-Route::get('categories', [CategoriesController::class,'index']) -> name('categories');
-Route::get('categories/{category}', [CategoriesController::class,'edit']) -> name('categories.edit');
-Route::post('categories', [CategoriesController::class,'store']) -> name('categories.store');
-Route::put('categories/{category}', [CategoriesController::class,'update']) -> name('categories.update');
-Route::delete('categories/{category}', [CategoriesController::class,'destroy']) -> name('categories.destroy');
+Route::get('categories', [CategoriesController::class,'index'])->middleware('auth') -> name('categories');
+Route::get('categories/{category}', [CategoriesController::class,'edit']) ->middleware('auth')-> name('categories.edit');
+Route::post('categories', [CategoriesController::class,'store'])->middleware('auth') -> name('categories.store');
+Route::put('categories/{category}', [CategoriesController::class,'update'])->middleware('auth') -> name('categories.update');
+Route::delete('categories/{category}', [CategoriesController::class,'destroy'])->middleware('auth') -> name('categories.destroy');
 
-Route::get('departments', [DepartmentsController::class,'index']) -> name('departments');
-Route::get('departments/{department}', [DepartmentsController::class,'edit']) -> name('departments.edit');
-Route::post('departments', [DepartmentsController::class,'store']) -> name('departments.store');
-Route::put('departments/{department}', [DepartmentsController::class,'update']) -> name('departments.update');
-Route::delete('department/{department}', [DepartmentsController::class,'destroy']) -> name('departments.destroy');
+Route::get('departments', [DepartmentsController::class,'index'])->middleware('auth') -> name('departments');
+Route::get('departments/{department}', [DepartmentsController::class,'edit'])->middleware('auth') -> name('departments.edit');
+Route::post('departments', [DepartmentsController::class,'store'])->middleware('auth') -> name('departments.store');
+Route::put('departments/{department}', [DepartmentsController::class,'update'])->middleware('auth') -> name('departments.update');
+Route::delete('department/{department}', [DepartmentsController::class,'destroy'])->middleware('auth') -> name('departments.destroy');
 
-Route::get('unities', [UnitiesController::class,'index']) -> name('unities');
-Route::get('unities/{unities}', [UnitiesController::class,'edit']) -> name('unities.edit');
-Route::post('unities', [UnitiesController::class,'store']) -> name('unities.store');
-Route::put('unities/{unities}', [UnitiesController::class,'update']) -> name('unities.update');
-Route::delete('unities/{unity}', [UnitiesController::class,'destroy']) -> name('unities.destroy');
+Route::get('unities', [UnitiesController::class,'index'])->middleware('auth') -> name('unities');
+Route::get('unities/{unities}', [UnitiesController::class,'edit'])->middleware('auth') -> name('unities.edit');
+Route::post('unities', [UnitiesController::class,'store'])->middleware('auth') -> name('unities.store');
+Route::put('unities/{unities}', [UnitiesController::class,'update'])->middleware('auth') -> name('unities.update');
+Route::delete('unities/{unity}', [UnitiesController::class,'destroy'])->middleware('auth') -> name('unities.destroy');
 
-Route::get('users', [UsersController::class,'index']) -> name('users');
-Route::get('users/{users}', [UsersController::class,'edit']) -> name('users.edit');
-Route::post('users', [UsersController::class,'store']) -> name('users.store');
-Route::put('users/{users}', [UsersController::class,'update']) -> name('users.update');
-Route::delete('users/{user}', [UsersController::class,'destroy']) -> name('users.destroy');
+Route::get('users', [UsersController::class,'index'])->middleware('auth') -> name('users');
+Route::get('users/{users}', [UsersController::class,'edit']) ->middleware('auth')-> name('users.edit');
+Route::post('users', [UsersController::class,'store'])->middleware('auth') -> name('users.store');
+Route::put('users/{users}', [UsersController::class,'update'])->middleware('auth') -> name('users.update');
+Route::delete('users/{user}', [UsersController::class,'destroy'])->middleware('auth') -> name('users.destroy');
 
+Route::get('search', [SearchController::class, 'search'])->name('search.products');
+Route::get('search/main', [SearchController::class, 'main'])->name('search.main');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');

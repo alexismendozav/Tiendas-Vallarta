@@ -10,16 +10,7 @@
                         data-toggle="tooltip" title="List view">Agregar Producto</a></span>
                 @endguest
                 <span class="mr-md-auto">
-                    <div class="form-group col-md-4">
-                        <select id="inputDepartment" class="form-control" name="department"
-                            onchange="location = this.options[this.selectedIndex].value;">
-                            @foreach ($departments as $department)
-                            <option @if($department -> id == $id_department) selected @endif
-                                value="{{route('products.index',$department->id)}}">{{$department -> nombre}}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
+                 
                 </span>
                 <form action="{{route('products.index',$id_department)}}" method="GET">
                     <select class="mr-2 form-control" name="orderby" id="orderby" onchange="this.form.submit()">
@@ -68,7 +59,7 @@
                     @else
                     <div class="row justify-content-center mb-lg-2">
                         <a href="{{route('product.edit', $product -> id)}}"
-                            class="btn btn-warning btn-sm wtext">Actualizar</a>
+                            class="btn btn-warning btn-sm wtext marginr">Actualizar</a>
                         <form action="{{route('product.destroy',$product)}}" method="post">
                             @csrf
                             @method('DELETE')
