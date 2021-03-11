@@ -115,7 +115,7 @@
 									<a href="{{route('register') }}"> Registrarse</a>
 								</div>
 							</div>
-							<a href="{{route('admin')}}" class="widget-header pl-3 ml-3">
+							<a href="{{route('home')}}" class="widget-header pl-3 ml-3">
 								<div class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></div>
 							</a>
 						</div> <!-- widgets-wrap.// -->
@@ -134,7 +134,7 @@
 								</form>
 
 							</div>
-							<a href="{{route('admin')}}" class="widget-header pl-3 ml-3 ">
+							<a href="{{route('home')}}" class="widget-header pl-3 ml-3 ">
 								<div class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></div>
 							</a>
 

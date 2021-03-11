@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
+   <div class="row">
     <div class="col-sm-10 mx-auto">
         <div class="card border-0 shadow">
             <div class="card-body">
@@ -11,17 +11,19 @@
                     @endforeach
                 </div>
                 @endif
-                <form action="{{ route('users.update',$user->id)}}" method="POST">
+                <form action="{{ route('locations.update',$location)}}" method="POST">
                     <div class="form-row">
-                        <div class="col-sm-3">
-                            <input type="text" name="name" class="form-control" placeholder="Usuario"
-                                value="{{$user->name}}">
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="text" name="email" class="form-control" placeholder="Email"
-                                value="{{$user->email}}">
+                        <div class="col-sm-4">
+                            <input type="text" name="name" class="form-control" placeholder="Locación"
+                                value="{{$location->name}}">
                         </div>
 
+                        <div class="col-sm-3">
+                            <select id="status" class="form-control" name="status">
+                                <option @if($location -> status == 1) selected @endif value="1">Disponible</option>
+                                <option @if($location -> status == 0) selected @endif value="0">No Disponible</option>
+                            </select>
+                        </div>
                         <div class="col-auto">
                             @method('PUT')
                             @csrf
@@ -31,5 +33,5 @@
                 </form>
             </div>
         </div>
-    </div>
-    @stop
+   </div>
+@stop

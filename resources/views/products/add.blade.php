@@ -94,6 +94,15 @@
                                     <option value="0">No Disponible</option>
                                 </select>
                             </div>
+                            <div class="form-group col-md-4">
+                                <label for="location">Ubicación</label>
+                                <select id="location" class="form-control" name="location"
+                                    value="{{old('location')}}">
+                                    @foreach ($locations as $location)
+                                    <option value="{{$location->id}}">{{$location -> name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="card-group justify-content-center">
                             <div class="card marginr" style="width: 18rem;">

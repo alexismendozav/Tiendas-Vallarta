@@ -27,6 +27,11 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
+                                <td>Productos</td>
+                                <td><a href="/2/productos" class="btn btn-primary ">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
                                 <td>Departamentos</td>
                                 <td><a href="/departments" class="btn btn-primary ">Ver</a></td>
                             </tr>
@@ -39,6 +44,11 @@
                                 <th scope="row">3</th>
                                 <td>Unidades de medida</td>
                                 <td><a href="/unities" class="btn btn-primary ">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Locaciones</td>
+                                <td><a href="/locations" class="btn btn-primary ">Ver</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>

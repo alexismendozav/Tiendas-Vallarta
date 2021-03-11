@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Unit;
+use App\Models\Location;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -36,11 +37,13 @@ class ProductsController extends Controller
         $categories = Category::all();
         $departments = Department::all();
         $unities = Unit::all();
+        $locations = Location::all();
 
         return view('products.add', [
             'unities' => $unities,
             'departments' => $departments,
-            'categories' => $categories
+            'categories' => $categories,
+            'locations' => $locations,
         ]);
     }
 
@@ -58,6 +61,7 @@ class ProductsController extends Controller
             'departamento' => $request->department,
             'categoria' => $request->category,
             'status' =>  $request->status,
+            'locacion' => $request->location,
             'created_by' => 1
         ]);
 
@@ -85,12 +89,15 @@ class ProductsController extends Controller
         $departments = Department::all();
         $unities = Unit::all();
         $product = Product::find($id);
+        $locations = Location::all();
+
 
         return view('products.edit', [
             'product' => $product,
             'unities' => $unities,
             'departments' => $departments,
-            'categories' => $categories
+            'categories' => $categories,
+            'locations' => $locations
         ]);
     }
 
@@ -107,6 +114,7 @@ class ProductsController extends Controller
         $product->departamento = $request->department;
         $product->categoria = $request->category;
         $product->status = $request->status;
+        $product->locacion = $request->location;
 
         if ($request->file('image1')) {
             Storage::disk('public')->delete($product->img);

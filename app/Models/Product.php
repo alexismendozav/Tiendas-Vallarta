@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Unit;
+use App\Models\Location;
 
 class Product extends Model
 {
@@ -23,6 +24,7 @@ class Product extends Model
         'img2',
         'img3',
         'status',
+        'locacion',
         'created_by'
     ];
     protected $table = 'productos';
@@ -39,6 +41,11 @@ class Product extends Model
     public function unity()
     {
         return $this->belongsTo(Unit::class, 'unidad_medida');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'locacion');
     }
 
     public function scopeOrderby($query, $order_by)

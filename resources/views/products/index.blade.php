@@ -51,7 +51,7 @@
                         <div class="mr-3"> <span class="price h6 ml-3">${{$product->precio_menudeo}}</span> </div>
                         <!-- price.// -->
                         <div class="ml-auto form-inline">
-                            <p class="mr-3 text-muted">Mueble Blanco</p>
+                            <p class="mr-3 text-muted">{{$product->location->name}}</p>
                         </div>
                     </div> <!-- bottom-wrap.// -->
 

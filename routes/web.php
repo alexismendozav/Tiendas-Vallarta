@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\UnitiesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\LocationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,9 +53,16 @@ Route::post('users', [UsersController::class,'store'])->middleware('auth') -> na
 Route::put('users/{users}', [UsersController::class,'update'])->middleware('auth') -> name('users.update');
 Route::delete('users/{user}', [UsersController::class,'destroy'])->middleware('auth') -> name('users.destroy');
 
+Route::get('locations', [LocationController::class,'index'])->middleware('auth') -> name('locations');
+Route::get('locations/{locations}', [LocationController::class,'edit'])->middleware('auth') -> name('locations.edit');
+Route::post('locations', [LocationController::class,'store'])->middleware('auth') -> name('locations.store');
+Route::put('locations/{location}', [LocationController::class,'update'])->middleware('auth') -> name('locations.update');
+Route::delete('locations/{location}', [LocationController::class,'destroy'])->middleware('auth') -> name('locations.destroy');
+
+
 Route::get('search', [SearchController::class, 'search'])->name('search.products');
 Route::get('search/main', [SearchController::class, 'main'])->name('search.main');
 
 Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
