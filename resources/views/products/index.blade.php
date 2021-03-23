@@ -43,7 +43,7 @@
                         <p>
                             <a href="#" class="title">{{$product->nombre}}</a>
                         </p>
-                        <span class="tag">{{$product->codigo}}</span>
+                        <span class="tag">{{$product->cantidad}}</span>
                         <span class="tag">{{$product->unity->nombre}}</span>
                         <span class="tag">{!!$product->get_disponibility!!}</span>
                     </figcaption>

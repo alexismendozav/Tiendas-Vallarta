@@ -34,7 +34,7 @@ class Product extends Model
         if ($this->status == 1) {
             return '<spam class="green">Disponible</spam>';
         } else {
-            return '<spam class="red">No disponible</spam>';
+            return '<spam class="red">No Disponible</spam>';
         }
     }
 

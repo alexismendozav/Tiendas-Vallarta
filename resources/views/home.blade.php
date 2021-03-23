@@ -28,7 +28,7 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Productos</td>
-                                <td><a href="/2/productos" class="btn btn-primary ">Ver</a></td>
+                                <td><a href="/2/products" class="btn btn-primary ">Ver</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">1</th>

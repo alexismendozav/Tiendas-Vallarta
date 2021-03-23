@@ -34,10 +34,10 @@ class ProductsController extends Controller
 
     public function show()
     {
-        $categories = Category::all();
-        $departments = Department::all();
-        $unities = Unit::all();
-        $locations = Location::all();
+        $categories = Category::all()->where('status','1');
+        $departments = Department::all()->where('status','1');
+        $unities = Unit::all()->where('status','1');
+        $locations = Location::all()->where('status','1');
 
         return view('products.add', [
             'unities' => $unities,
@@ -85,11 +85,11 @@ class ProductsController extends Controller
 
     public function edit(Int $id)
     {
-        $categories = Category::all();
-        $departments = Department::all();
-        $unities = Unit::all();
+        $categories = Category::all()->where('status','1');
+        $departments = Department::all()->where('status','1');
+        $unities = Unit::all()->where('status','1');
         $product = Product::find($id);
-        $locations = Location::all();
+        $locations = Location::all()->where('status','1');
 
 
         return view('products.edit', [
@@ -135,7 +135,7 @@ class ProductsController extends Controller
         }
 
         $product->save();
-        return redirect()->route('products.index', 2)->with('info', 'Producto editado correctamente');
+        return back()->with('info','Producto actualizado correctamente');
     }
 
     public function destroy(Product $product)

@@ -23,9 +23,22 @@
                         <div class="mr-3"> <span class="price h6 ml-3">${{$product->precio_menudeo}}</span> </div>
                         <!-- price.// -->
                         <div class="ml-auto form-inline">
-                            <p class="mr-3 text-muted">Mueble Blanco</p>
+                            <p class="mr-3 text-muted">{{$product->location->name}}</p>
                         </div>
                     </div> <!-- bottom-wrap.// -->
+                    @guest
+                    @else
+                    <div class="row justify-content-center mb-lg-2">
+                        <a href="{{route('product.edit', $product -> id)}}"
+                            class="btn btn-warning btn-sm wtext marginr">Actualizar</a>
+                        <form action="{{route('product.destroy',$product)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Desea eiminar el producto ... ?')">
+                        </form>
+                    </div>
+                    @endguest
                 </figure>
 
             </div> <!-- col.// -->

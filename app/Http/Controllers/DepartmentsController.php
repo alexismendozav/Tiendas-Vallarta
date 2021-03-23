@@ -62,6 +62,6 @@ class DepartmentsController extends Controller
         $department->delete();
         return  redirect()
             ->route('departments')
-            ->with('info', 'Departmento eliminado correctamente');
+            ->with('info', 'Departamento eliminado correctamente');
     }
 }

@@ -14,6 +14,14 @@
                         @endforeach
                     </div>
                     @endif
+                    @if (Session::has('info'))
+                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                        <strong> {{ Session::get('info')}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <form action={{route('product.update', $product->id)}} method="POST" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-2">

@@ -3,14 +3,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Loaciones') }}</div>
+            <div class="card shadow border-0">
+                <div class="card-header"><h5>{{ __('Locaciones') }}</h5></div>
 
                 <div class="card-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-center">
                         @foreach ($errors->all() as $error)
-                        -{{$error}} <br>
+                        - {{$error}} <br>
                         @endforeach
                     </div>
                     @endif
@@ -53,17 +53,9 @@
                     <tbody>
                         @foreach ($locations as $location)
                         <tr>
-                            <th>{{ $location -> id}}</th>
-                            <td>{{ $location -> name}}</td>
-                            @if ($location->status == 1)
-                            <td>
-                                <p class=" text-success ">Activo</p>
-                            </td>
-                            @else
-                            <td>
-                                <p class="text-danger">Inactivo</p>
-                            </td>
-                            @endif
+                            <th>{{ $location->id}}</th>
+                            <td>{{ $location->name}}</td>
+                            <td>{!! $location->get_disponibility!!}</td>
                             <td>
                                 <div class="row d-flex justify-content-center">
                                     <a href="{{route('locations.edit',$location -> id)}}"

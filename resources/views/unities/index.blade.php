@@ -3,19 +3,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Unidades de medida') }}</div>
+            <div class="card shadow border-0">
+                <div class="card-header">
+                    <h5>{{ __('Unidades de medida') }}</h5>
+                </div>
 
                 <div class="card-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-center">
                         @foreach ($errors->all() as $error)
-                        -{{$error}} <br>
+                        - {{$error}} <br>
                         @endforeach
                     </div>
                     @endif
                     @if (Session::has('info'))
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
                         <strong>Hecho</strong> {{ Session::get('info')}}.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -40,50 +42,42 @@
                             </div>
                         </div>
                     </form>
-              <br>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Unidad de medida</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($unities as $unity)
-                        <tr>
-                            <th>{{ $unity -> id}}</th>
-                            <td>{{ $unity -> nombre}}</td>
-                            @if ($unity->status == 1)
-                            <td>
-                                <p class="green">Activo</p>
-                            </td>
-                            @else
-                            <td>
-                                <p class="red">Inactivo</p>
-                            </td>
-                            @endif
-                            <td>
-                                <div class="row d-flex justify-content-center">
-                                    <a href="{{route('unities.edit',$unity -> id)}}"
-                                        class="btn btn-warning btn-sm marginr ">Editar</a>
-                                    <form action="{{route('unities.destroy',$unity)}}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <input type="submit" value="Eliminar" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Desea eiminar ... ?')">
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Unidad de medida</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($unities as $unity)
+                            <tr>
+                                <th>{{ $unity->id}}</th>
+                                <td>{{ $unity->nombre}}</td>
+                                <td>{!! $unity->get_disponibility!!}</td>
+                                <td>
+                                    <div class="row d-flex justify-content-center">
+                                        <a href="{{route('unities.edit',$unity -> id)}}"
+                                            class="btn btn-warning btn-sm marginr ">Editar</a>
+                                        <form action="{{route('unities.destroy',$unity)}}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <input type="submit" value="Eliminar" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Desea eiminar ... ?')">
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

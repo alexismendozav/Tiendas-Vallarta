@@ -64,7 +64,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a href="#" class="nav-link"> 12/12/2021</a></li>
+						<li class="nav-item"><a href="/home" class="nav-link" >Administrador</a></li>
 					</ul> <!-- list-inline //  -->
 				</div> <!-- navbar-collapse .// -->
 			</div> <!-- container //  -->
@@ -92,7 +92,7 @@
 								</select>
 								<input type="hidden" name="id_department" value="{{$id_department}}">
 								<input type="text" name="product" id="products-search" class="form-control"
-									style="width:50%;" placeholder="Buscar">
+									style="width:50%;" placeholder="Buscar" value="{{old('product')}}">
 
 								<div class="input-group-append">
 									@method('GET')
@@ -177,7 +177,7 @@
 				&copy Copyright 2021 All rights reserved
 			</p>
 			<p>
-				<a href="#">Tiendas Vallarta</a>
+				<a href="/">Tiendas Vallarta</a>
 			</p>
 		</div><!-- //container -->
 		<script>

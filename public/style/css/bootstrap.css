@@ -10112,6 +10112,7 @@ h3 {
 
   .container {
     min-width: 992px !important;
+    background-color: #f1f1f1 !important;
   }
 
   .navbar {

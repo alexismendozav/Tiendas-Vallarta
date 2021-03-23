@@ -4,20 +4,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Departamentos') }}</div>
+            <div class="card shadow border-0">
+                <div class="card-header"><h5>{{ __('Departamentos') }}</h5></div>
 
                 <div class="card-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-center">
                         @foreach ($errors->all() as $error)
-                        -{{$error}} <br>
+                        - {{$error}} <br>
                         @endforeach
                     </div>
                     @endif
                     @if (Session::has('info'))
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Hecho</strong> {{ Session::get('info')}}.
+                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                        <strong> {{ Session::get('info')}} </strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -57,15 +57,10 @@
                             <tr>
                                 <th>{{ $department -> id}}</th>
                                 <td>{{ $department -> nombre}}</td>
-                                @if ($department->status == 1)
                                 <td>
-                                    <p class="green">Activo</p>
+                                    <p>{!!$department -> get_disponibility!!}</p>
                                 </td>
-                                @else
-                                <td>
-                                    <p class="red">Inactivo</p>
-                                </td>
-                                @endif
+
                                 <td>
                                     <div class="row d-flex justify-content-center">
                                         <a href="{{route('departments.edit',$department -> id)}}"
@@ -82,16 +77,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
-
-
-
-
-

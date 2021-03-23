@@ -3,20 +3,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Categorias') }}</div>
+            <div class="card shadow border-0">
+                <div class="card-header "><h5>{{ __('Categorías') }}</h5></div>
 
                 <div class="card-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger text-center">
                         @foreach ($errors->all() as $error)
                         -{{$error}} <br>
                         @endforeach
                     </div>
                     @endif
                     @if (Session::has('info'))
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Hecho</strong> {{ Session::get('info')}}.
+                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                        <strong> {{ Session::get('info')}} </strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -57,7 +57,7 @@
                                 <th>Categoría</th>
                                 <th>Departamento</th>
                                 <th>Estado</th>
-                                <th>Acciones</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,11 +66,7 @@
                                 <th>{{ $category->id}}</th>
                                 <td>{{ $category->nombre}}</td>
                                 <td>{{ $category->department->nombre }}</td>
-                                @if ($category->status == 1)
-                                <td><p class="green">Activo</p></td>
-                                @else
-                                <td><p class="red">Inactivo</p></td>
-                                @endif
+                                <td>{!! $category->get_disponibility!!}</td>
                                 <td>
                                     <div class="row justify-content-center d-flex">
                                         <a href="{{route('categories.edit',$category -> id)}}"

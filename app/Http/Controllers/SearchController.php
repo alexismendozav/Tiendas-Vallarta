@@ -20,7 +20,7 @@ class SearchController extends Controller
         $product = $request->product;
         $id_department = $request->id_department;
         $departments = Department::all();
-        $products = Product::where('departamento',$id_department)->where('nombre','LIKE',"%$product%")->orderBy('nombre','ASC')->get();
+        $products = Product::where('departamento',$id_department)->where('nombre','LIKE',"%$product%")->orWhere('codigo','LIKE',"%$product%")->orderBy('nombre','ASC')->get();
         return view('search.index',[
              'departments' => $departments,
              'products' => $products,

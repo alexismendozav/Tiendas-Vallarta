@@ -12,7 +12,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $departments = Department::all();
+        $departments = Department::all()->where('status','1');
         $categories = Category::with('department')->get();
         
         return view('categories.index', [
@@ -40,7 +40,7 @@ class CategoriesController extends Controller
     public function edit(Int $id)
     {
         $category = Category::find($id);
-        $departments = Department::all();
+        $departments = Department::all()->where('status','1');
         return view('categories.edit', [
             'category'    => $category,
             'departments' => $departments
